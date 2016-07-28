@@ -1,12 +1,15 @@
 CSS Only Share Buttons
 ===================
 
+Pure CSS implementation of share buttons without images.
+
 ## Features
 
  * No images (css-only)
  * Buttons size 38x37 px
  * Used suitable web-safe fonts
  * Cross browser work
+ * 6 KB minified
 
 ## Socials list
 
@@ -33,7 +36,7 @@ CSS Only Share Buttons
 
 ## Usage
 
-Use following css classes and characters with **span** tag:
+Use following css classes and characters inside **span** tag:
 
 ```<a href="#" class="css-only-share vk" title="Share on VK"><span>B</span></a>```  
 ```<a href="#" class="css-only-share facebook" title="Share on Facebook"><span>f</span></a>```  
