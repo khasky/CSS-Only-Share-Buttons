@@ -1,7 +1,11 @@
 CSS Only Share Buttons
 ===================
 
+![CSS Only Share Buttons](https://github.com/khasky/CSS-Only-Share-Buttons/blob/master/screenshot.png)
+
 Pure CSS implementation of share buttons without images.
+
+[Live demo](http://khasky.com/demo/css-only-share-buttons)
 
 ## Features
 
@@ -13,7 +17,7 @@ Pure CSS implementation of share buttons without images.
 
 ## Socials list
 
- * VK (Vkontakte)
+ * VK
  * Facebook
  * Twitter
  * LinkedIn
@@ -25,7 +29,7 @@ Pure CSS implementation of share buttons without images.
  * LiveJournal
  * MySpace
  * Mail.Ru
- * OK.Ru (Odnoklassniki)
+ * OK.Ru
  * RSS feed
  
 ## Installation
@@ -38,7 +42,7 @@ Pure CSS implementation of share buttons without images.
 
 Use following css classes and characters inside **span** tag:
 
-```<a href="#" class="css-only-share vk" title="Share on VK"><span>B</span></a>```  
+```<a href="#" class="css-only-share vk" title="Share on VK"><span>vk</span></a>```  
 ```<a href="#" class="css-only-share facebook" title="Share on Facebook"><span>f</span></a>```  
 ```<a href="#" class="css-only-share twitter" title="Share on Twitter"><span>t</span></a>```  
 ```<a href="#" class="css-only-share linkedin" title="Share on LinkedIn"><span>in</span></a>```  
@@ -52,10 +56,6 @@ Use following css classes and characters inside **span** tag:
 ```<a href="#" class="css-only-share mailru" title="Share on Mail.Ru"><span>@</span></a>```  
 ```<a href="#" class="css-only-share okru" title="Share on OK.Ru"><span>OK</span></a>```  
 ```<a href="#" class="css-only-share rss" title="RSS feed"><span>RSS</span></a>```
-
-## Example
-
-![CSS Only Share Buttons](https://github.com/khasky/CSS-Only-Share-Buttons/blob/master/screenshot.png)
 
 ## Build (optional)
 
