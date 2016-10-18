@@ -1,7 +1,7 @@
 CSS Only Share Buttons
 ===================
 
-![CSS Only Share Buttons](https://github.com/khasky/CSSOnlyShareButtons/blob/master/screenshot.png)
+![CSS Only Share Buttons](https://github.com/khasky/CSS-Only-Share-Buttons/blob/master/screenshot.png)
 
 Pure CSS implementation of share buttons without images.
 
