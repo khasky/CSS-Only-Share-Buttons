@@ -1,0 +1,916 @@
+/* https://github.com/khasky/Lessophy
+ */
+
+/* Web fonts
+ * Usage: .font-face('YourFontName', @yourFontPath, @yourFontWeight, @yourFontStyle);
+ */
+@themePath: "/wp-content/themes/dev";
+@fontsPath: "@{themePath}/fonts";
+
+.font-face (@fontName: sans-serif; @path: @fontsPath; @fontWeight: normal; @fontStyle: normal) {
+    @font-face {
+        font-family: @fontName;
+        src: url('@{path}/@{fontName}.eot');
+        src: url('@{path}/@{fontName}.eot?#iefix') format('embedded-opentype'),
+             url('@{path}/@{fontName}.woff') format('woff'),
+             url('@{path}/@{fontName}.ttf') format('truetype'),
+             url('@{path}/@{fontName}.svg#@{fontName}') format('svg');
+        font-weight: @fontWeight;
+        font-style: @fontStyle;
+    }
+}
+
+/* Chrome, IE (color-only), Firefox 48.0, Safari, Opera
+ */
+.text-gradient (@from: #4d9de0, @to: #3dcd8d) {
+	color: @to;
+	background: -webkit-linear-gradient(left top, @from, @to);
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+}
+
+/* Chrome 4.0, IE 6.0, Firefox 7.0, Safari 3.1, Opera 11.0 (9.0 -o-)
+ * text-overflow: clip|ellipsis|string|initial|inherit;
+ */
+.text-overflow (@value: clip) {
+	-o-text-overflow: @value;
+	text-overflow: @value;
+}
+
+.text-overflow-ellipsis () {
+	white-space: nowrap;
+	overflow: hidden;
+	.text-overflow(ellipsis);
+}
+
+/* Chrome 4.0, Firefox 3.0 (Firefox 25.0 OSX), Safari 5.0, Opera 15.0 -webkit-
+ */
+.text-antialias (@enabled) when (@enabled = true) {
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	text-rendering: optimizeLegibility;
+}
+.text-antialias (@enabled) when (@enabled = false) {
+	-webkit-font-smoothing: subpixel-antialiased;
+	-moz-osx-font-smoothing: auto;
+	text-rendering: auto;
+}
+
+/* Prevent Webkit and Windows Mobile platforms from changing default font sizes, while not breaking desktop design.
+ * Safari 8.1 -webkit-, Firefox 11.0, Windows Phone 7 -ms-
+ * text-size-adjust: none|auto|percentage
+ */
+.text-size-adjust (@value: 100%) {
+	-webkit-text-size-adjust: @value;
+	-moz-text-size-adjust: @value;
+	-ms-text-size-adjust: @value;
+	text-size-adjust: @value;
+}
+
+/* Chrome 10.0 (4.0 -webkit-), IE 8.0, Mozilla 29.0 (2.0 -moz-), Safari 5.1 (3.2 -webkit-), Opera 9.5
+ * box-sizing: content-box|border-box|initial|inherit;
+ */
+.box-sizing (@type: content-box) {
+	-webkit-box-sizing: @type;
+	-moz-box-sizing: @type;
+	box-sizing: @type;
+}
+
+/* Chrome 4.0, IE 9.0, Mozilla 4.0, Safari 3.0, Opera 10.5
+ * background-clip: border-box|padding-box|content-box|initial|inherit;
+ */
+.background-clip (@value: border-box) {
+	-moz-background-clip: @value;
+	-webkit-background-clip: @value;
+	background-clip: @value;
+}
+
+/* Chrome 10.0 (4.0 -webkit-), IE 9.0, Mozilla 4.0 (3.5 -moz-), Safari 5.1 (3.1 -webkit-), Opera 10.5
+ * box-shadow: none|h-shadow v-shadow blur spread color |inset|initial|inherit;
+ */
+.box-shadow (@value: none) {
+	-webkit-box-shadow: @value;
+	-moz-box-shadow: @value;
+	box-shadow: @value;
+}
+
+/* Chrome 5.0 (4.0 -webkit-), IE 9.0, Mozilla 4.0 (3.0 -moz-), Safari 5.0 (3.1 -webkit-), Opera 10.5
+ * border-radius: 1-4 length|% / 1-4 length|%|initial|inherit;
+ */
+.border-radius (@value: 0) {
+	-webkit-border-radius: @value;
+	-moz-border-radius: @value;
+	border-radius: @value;
+}
+
+.border-bottom-left-radius (@value: 0) {
+	-webkit-border-bottom-left-radius: @value;
+	-moz-border-radius-bottomleft: @value;
+	border-bottom-left-radius: @value;
+}
+
+.border-bottom-right-radius (@value: 0) {
+	-webkit-border-bottom-right-radius: @value;
+	-moz-border-radius-bottomright: @value;
+	border-bottom-right-radius: @value;
+}
+
+.border-top-left-radius (@value: 0) {
+	-webkit-border-top-left-radius: @value;
+	-moz-border-top-left-radius: @value;
+	border-top-left-radius: @value;
+}
+
+.border-top-right-radius (@value: 0) {
+	-webkit-border-top-right-radius: @value;
+	-moz-border-top-right-radius: @value;
+	border-top-right-radius: @value;
+}
+
+/* Chrome 16.0 (4.0 -webkit-), IE 11.0, Mozilla 15.0 (3.5 -moz-), Safari 6.0 (3.1 -webkit-), Opera 15.0 (11.0 -o-)
+ * border-image: source slice width outset repeat|initial|inherit;
+ */
+.border-image (@value: ~"none 100% 1 0 stretch") {
+	-webkit-border-image: @value;
+	-moz-border-image: @value;
+	-o-border-image: @value;
+	border-image: @value;
+}
+
+/* Chrome 4.0, IE 9.0 (IE 8.0 using filter), Mozilla 2.0, Safari 3.1, Opera 9.0
+ * opacity: number|initial|inherit;
+ */
+.opacity (@opacity: 1) {
+	filter: e(%("alpha(opacity=%d)", @opacity * 100));
+	-webkit-opacity: @opacity;
+	-khtml-opacity: @opacity;
+	-moz-opacity: @opacity;
+	-o-opacity: @opacity;
+	opacity: @opacity;
+}
+
+/* Chrome 4.0 (1.0 -webkit-), IE 9.0, Mozilla 4.0 (3.6 -moz-), Safari 4.1 (3.0 -webkit-), Opera 10.5 (10.0 -o-)
+ * background-size: auto|length|cover|contain|initial|inherit;
+ */
+.background-size (@value: auto) {
+	-webkit-background-size: @value;
+	-moz-background-size: @value;
+	-o-background-size: @value;
+	background-size: @value;
+}
+
+/* Chrome 26.0 (4.0 -webkit-), IE 10.0, Mozilla 16.0 (4.0 -moz-), Safari 6.1 (3.1 -webkit-), Opera 12.1 (10.5 -o-)
+ * transition: property duration timing-function delay|initial|inherit;
+ */
+.transition (@value: none) {
+	-webkit-transition: @value;  
+	-moz-transition: @value;
+	-ms-transition: @value; 
+	-o-transition: @value;
+	transition: @value;
+}
+
+/* Chrome 26.0 (4.0 -webkit-), IE 10.0, Mozilla 16.0 (4.0 -moz-), Safari 6.1 (3.1 -webkit-), Opera 12.1 (10.5 -o-)
+ * transition-timing-function: linear|ease|ease-in|ease-out|ease-in-out|step-start|step-end|steps(int,start|end)|cubic-bezier(n,n,n,n)|initial|inherit;
+ */
+.transition-timing-function (@value: ease) {
+	-webkit-transition-timing-function: @value;
+	-moz-transition-timing-function: @value;
+	-o-transition-timing-function: @value;
+    transition-timing-function: @value;
+}
+
+/* Chrome 26.0 (4.0 -webkit-), IE 10.0, Mozilla 16.0 (4.0 -moz-), Safari 6.1 (3.1 -webkit-), Opera 12.1 (10.5 -o-)
+ * transition-duration: time|initial|inherit;
+ */
+.transition-duration (@value: 0s) {
+	-webkit-transition-duration: @value;
+	-moz-transition-duration: @value;
+	-o-transition-duration: @value;
+	transition-duration: @value;
+}
+
+/* Chrome 26.0 (4.0 -webkit-), IE 10.0, Mozilla 16.0 (4.0 -moz-), Safari 6.1 (3.1 -webkit-), Opera 12.1 (10.5 -o-)
+ * transition-delay: time|initial|inherit;
+ */
+.transition-delay (@value: 0s) {
+	-webkit-transition-delay: @value;
+	-moz-transition-delay: @value;
+	-o-transition-delay: @value;
+	transition-delay: @value;
+}
+
+/* Chrome 26.0 (4.0 -webkit-), IE 10.0, Mozilla 16.0 (4.0 -moz-), Safari 6.1 (3.1 -webkit-), Opera 12.1 (10.5 -o-)
+ * transition-property: none|all|property|initial|inherit;
+ */
+.transition-property (@value: all) {
+	-webkit-transition-property: @value;
+	-moz-transition-property: @value;
+	-o-transition-property: @value;
+	transition-property: @value;
+}
+
+/* Chrome 43.0 (4.0 -webkit-), IE 10.0, Mozilla 16.0 (5.0 -moz-), Safari 9.0 (4.0 -webkit-), Opera 30.0 (15.0 -webkit- 12.0 -o-)
+ * animation: name duration timing-function delay iteration-count direction fill-mode play-state;
+ */
+.animation (@value: none) {
+	-webkit-animation: @value;
+	-khtml-animation: @value;
+	-moz-animation: @value;
+	-ms-animation: @value;
+	-o-animation: @value;
+	animation: @value;
+}
+
+/* Chrome 43.0 (4.0 -webkit-), IE 10.0, Mozilla 16.0 (5.0 -moz-), Safari 9.0 (4.0 -webkit-), Opera 30.0 (15.0 -webkit- 12.0 -o-)
+ * animation-name: keyframename|none|initial|inherit;
+ */
+.animation-name (@value: none) {
+	-webkit-animation-name: @value;
+	-moz-animation-name: @value;
+	-ms-animation-name: @value;
+	-o-animation-name: @value;
+	animation-name: @value;
+}
+
+/* Chrome 43.0 (3.0 -webkit-), IE 10.0, Mozilla 16.0 (5.0 -moz-), Safari 9.0 (4.0 -webkit-), Opera 30.0 (15.0 -webkit- 12.0 -o-)
+ * animation-timing-function: linear|ease|ease-in|ease-out|ease-in-out|step-start|step-end|steps(int,start|end)|cubic-bezier(n,n,n,n)|initial|inherit;
+ */
+.animation-timing-function (@value: ease) {
+	-webkit-animation-timing-function: @value;
+	-moz-animation-timing-function: @value;
+	-ms-animation-timing-function: @value;
+	-o-animation-timing-function: @value;
+	animation-timing-function: @value;
+}
+
+/* Chrome 43.0 (3.0 -webkit-), IE 10.0, Mozilla 16.0 (5.0 -moz-), Safari 9.0 (4.0 -webkit-), Opera 30.0 (15.0 -webkit- 12.0 -o-)
+ * animation-duration: time|initial|inherit;
+ */
+.animation-duration (@value: 0) {
+	-webkit-animation-duration: @value;
+	-moz-animation-duration: @value;
+	-ms-animation-duration: @value;
+	-o-animation-duration: @value;
+	animation-duration: @value;
+}
+
+/* Chrome 43.0 (4.0 -webkit-), IE 10.0, Mozilla 16.0 (5.0 -moz-), Safari 9.0 (4.0 -webkit-), Opera 30.0 (15.0 -webkit- 12.0 -o-)
+ * animation-delay: time|initial|inherit;
+ */
+.animation-delay (@value: 0s) {
+	-webkit-animation-delay: @value;
+	-moz-animation-delay: @value;
+	-ms-animation-delay: @value;
+	-o-animation-delay: @value;
+	animation-delay: @value;
+}
+
+/* Chrome 43.0 (4.0 -webkit-), IE 10.0, Mozilla 16.0 (5.0 -moz-), Safari 9.0 (4.0 -webkit-), Opera 30.0 (15.0 -webkit- 12.0 -o-)
+ * animation-direction: normal|reverse|alternate|alternate-reverse|initial|inherit;
+ */
+.animation-direction (@value: normal) {
+	-webkit-animation-direction: @value;
+	-moz-animation-direction: @value;
+	-ms-animation-direction: @value;
+	-o-animation-direction: @value;
+	animation-direction: @value;
+}
+
+/* Chrome 4.0 -webkit-, IE 10.0, Mozilla 16.0 (5.0 -moz-), Safari 4.0 -webkit-, Opera 15.0 -webkit- (12.0 -o-)
+ * animation-fill-mode: none|forwards|backwards|both|initial|inherit;
+ */
+.animation-fill-mode (@value: none) {
+	-webkit-animation-fill-mode: @value;
+	-moz-animation-fill-mode: @value;
+	-ms-animation-fill-mode: @value;
+	-o-animation-fill-mode: @value;
+	animation-fill-mode: @value;
+}
+
+/* Chrome 43.0 (4.0 -webkit-), IE 10.0, Mozilla 16.0 (5.0 -moz-), Safari 9.0 (4.0 -webkit-), Opera 30.0 (15.0 -webkit- 12.0 -o-)
+ * animation-iteration-count: number|infinite|initial|inherit;
+ */
+.animation-iteration-count (@value: 1) {
+	-webkit-animation-iteration-count: @value;
+	-moz-animation-iteration-count: @value;
+	-ms-animation-iteration-count: @value;
+	-o-animation-iteration-count: @value;
+	animation-iteration-count: @value;
+}
+
+/* Chrome 43.0 (4.0 -webkit-), IE 10.0, Mozilla 16.0 (5.0 -moz-), Safari 9.0 (4.0 -webkit-), Opera 30.0 (15.0 -webkit- 12.0 -o-)
+ * animation-play-state: paused|running|initial|inherit;
+ */
+.animation-play-state (@value: running) {
+	-webkit-animation-play-state: @value;
+	-moz-animation-play-state: @value;
+	-ms-animation-play-state: @value;
+	-o-animation-play-state: @value;
+	animation-play-state: @value;
+}
+
+/* (2D) Chrome 36.0 (4.0 -webkit-), IE 10.0 (9.0 -ms-), Mozilla 16.0 (3.5 -moz-), Safari 9.0 (3.2 -webkit-), Opera 23.0 (15.0 -webkit- 10.5 -o-)
+ * (3D) Chrome 36.0 (12.0 -webkit-), IE 12.0, Mozilla 10.0, Safari 16.0 (10.0 -moz-), Opera 9.0 (4.0 -webkit-)
+ * transform: none|transform-functions|initial|inherit;
+ */
+.transform (@value: none) {
+	-webkit-transform: @value;
+	-moz-transform: @value;
+	-ms-transform: @value;
+	-o-transform: @value;
+	transform: @value;
+}
+
+.transform-scale (@value: 1) {
+	-webkit-transform: scale(@value);
+	-moz-transform: scale(@value);
+	-ms-transform: scale(@value);
+	-o-transform: scale(@value);
+	transform: scale(@value);
+}
+
+.transform-scaleX (@value: 1) {
+	-webkit-transform: scaleX(@value);
+	-moz-transform: scaleX(@value);
+	-ms-transform: scaleX(@value);
+	-o-transform: scaleX(@value);
+	transform: scaleX(@value);
+}
+
+.transform-scaleY (@value: 1) {
+	-webkit-transform: scaleY(@value);
+	-moz-transform: scaleY(@value);
+	-ms-transform: scaleY(@value);
+	-o-transform: scaleY(@value);
+	transform: scaleY(@value);
+}
+
+.transform-scaleZ (@value: 1) {
+	-webkit-transform: scaleZ(@value);
+	-moz-transform: scaleZ(@value);
+	-ms-transform: scaleZ(@value);
+	-o-transform: scaleZ(@value);
+	transform: scaleZ(@value);
+}
+
+.transform-scale3d (@sX: 1, @sY: 1, @sZ: 1) {
+	-webkit-transform: scale3d(@sX, @sY, @sZ);
+	-moz-transform: scale3d(@sX, @sY, @sZ);
+	-ms-transform: scale3d(@sX, @sY, @sZ);
+	-o-transform: scale3d(@sX, @sY, @sZ);
+	transform: scale3d(@sX, @sY, @sZ);
+}
+
+.transform-skew (@degX: 0, @degY: 0) {
+	-webkit-transform: skew(@degX, @degY);
+	-moz-transform: skew(@degX, @degY);
+	-ms-transform: skew(@degX, @degY);
+	-o-transform: skew(@degX, @degY);
+	transform: skew(@degX, @degY);
+}
+
+.transform-skewX (@deg: 0) {
+	-webkit-transform: skewX(@deg);
+	-moz-transform: skewX(@deg);
+	-ms-transform: skewX(@deg);
+	-o-transform: skewX(@deg);
+	transform: skewX(@deg);
+}
+
+.transform-skewY (@deg: 0) {
+	-webkit-transform: skewY(@deg);
+	-moz-transform: skewY(@deg);
+	-ms-transform: skewY(@deg);
+	-o-transform: skewY(@deg);
+	transform: skewY(@deg);
+}
+
+.transform-rotate (@deg: 0) {
+	-webkit-transform: rotate(@deg);
+	-moz-transform: rotate(@deg);
+	-ms-transform: rotate(@deg);
+	-o-transform: rotate(@deg);
+	transform: rotate(@deg);
+}
+
+.transform-rotateX (@deg: 0) {
+	-webkit-transform: rotateX(@deg);
+	-moz-transform: rotateX(@deg);
+	-ms-transform: rotateX(@deg);
+	-o-transform: rotateX(@deg);
+	transform: rotateX(@deg);
+}
+
+.transform-rotateY (@deg: 0) {
+	-webkit-transform: rotateY(@deg);
+	-moz-transform: rotateY(@deg);
+	-ms-transform: rotateY(@deg);
+	-o-transform: rotateY(@deg);
+	transform: rotateY(@deg);
+}
+
+.transform-rotateZ (@deg: 0) {
+	-webkit-transform: rotateZ(@deg);
+	-moz-transform: rotateZ(@deg);
+	-ms-transform: rotateZ(@deg);
+	-o-transform: rotateZ(@deg);
+	transform: rotateZ(@deg);
+}
+
+.transform-rotate3d (@x: 0, @y: 0, @z: 0, @deg: 0) {
+	-webkit-transform: rotate3d(@x, @y, @z, @deg);
+	-moz-transform: rotate3d(@x, @y, @z, @deg);
+	-ms-transform: rotate3d(@x, @y, @z, @deg);
+	-o-transform: rotate3d(@x, @y, @z, @deg);
+	transform: rotate3d(@x, @y, @z, @deg);
+}
+
+.translate (@x: 0, @y: 0) {
+	-webkit-transform: translate(@x, @y);
+	-moz-transform: translate(@x, @y);
+	-ms-transform: translate(@x, @y);
+	-o-transform: translate(@x, @y);
+	transform: translate(@x, @y);
+}
+
+.translateX (@x: 0) {
+	-webkit-transform: translateX(@x);
+	-moz-transform: translateX(@x);
+	-ms-transform: translateX(@x);
+	-o-transform: translateX(@x);
+	transform: translateX(@x);
+}
+
+.translateY (@y: 0) {
+	-webkit-transform: translateY(@y);
+	-moz-transform: translateY(@y);
+	-ms-transform: translateY(@y);
+	-o-transform: translateY(@y);
+	transform: translateY(@y);
+}
+
+.translateZ (@z: 0) {
+	-webkit-transform: translateZ(@z);
+	-moz-transform: translateZ(@z);
+	-ms-transform: translateZ(@z);
+	-o-transform: translateZ(@z);
+	transform: translateZ(@z);
+}
+
+.translate3d (@x: 0, @y: 0, @z: 0) {
+	-webkit-transform: translate3d(@x, @y, @z);
+	-moz-transform: translate3d(@x, @y, @z);
+	-ms-transform: translate3d(@x, @y, @z);
+	-o-transform: translate3d(@x, @y, @z);
+	transform: translate3d(@x, @y, @z);
+}
+
+.transform-translateZ-rotateX (@translate: 0, @rotate: 0) {
+	-webkit-transform: translateZ(@translate) rotateX(@rotate);
+	-moz-transform: translateZ(@translate) rotateX(@rotate);
+	-ms-transform: translateZ(@translate) rotateX(@rotate);
+	-o-transform: translateZ(@translate) rotateX(@rotate);
+	transform: translateZ(@translate) rotateX(@rotate);
+}
+
+.transform-translateZ-rotateY (@translate: 0, @rotate: 0) {
+	-webkit-transform: translateZ(@translate) rotateY(@rotate);
+	-moz-transform: translateZ(@translate) rotateY(@rotate);
+	-ms-transform: translateZ(@translate) rotateY(@rotate);
+	-o-transform: translateZ(@translate) rotateY(@rotate);
+	transform: translateZ(@translate) rotateY(@rotate);
+}
+
+/* Chrome 36.0 (4.0 -webkit-), IE 10.0 (9.0 -ms-), Mozilla 16.0 (3.5 -moz-), Safari 9.0 (3.2 -webkit-), Opera 23.0 (15.0 -webkit- 10.5 -o-)
+ * transform-origin: x-axis y-axis z-axis|initial|inherit;
+ */
+.transform-origin (@x: 50%, @y: 50%, @z: 0) {
+	-webkit-transform-origin: @x @y @z;
+	-moz-transform-origin: @x @y @z;
+	-ms-transform-origin: @x @y @z;
+	-o-transform-origin: @x @y @z;
+	transform-origin: @x @y @z;
+}
+
+/* Chrome 36.0 (12.0 -webkit-), IE 11.0, Mozilla 16.0 (10.0 -moz-), Safari 9.0 (4.0 -webkit-), Opera 23.0 (15.0 -webkit-)
+ * transform-style: flat|preserve-3d|initial|inherit;
+ */
+.transform-style (@style: flat) {
+	-webkit-transform-style: @style;
+	-moz-transform-style: @style;
+	transform-style: @style;
+}
+
+/* Chrome 36.0 (12.0 -webkit-), IE 10.0, Mozilla 16.0 (10.0 -moz-), Safari 9.0 (4.0.3 -webkit-), Opera 23.0 (15.0 -webkit-)
+ * perspective: length|none;
+ */
+.perspective (@value: none) {
+	-webkit-perspective: @value;
+	-moz-perspective: @value;
+	perspective: @value;
+}
+
+/* Chrome 36.0 (12.0 -webkit-), IE 10.0, Mozilla 16.0 (10.0 -moz-), Safari 9.0 (4.0.3 -webkit-), Opera 23.0 (15.0 -webkit-)
+ * perspective-origin: x-axis y-axis|initial|inherit;
+ */
+.perspective-origin (@value: 50% 50%) {
+	-webkit-perspective-origin: @value;
+	-moz-perspective-origin: @value;
+	perspective-origin: @value;
+}
+
+/* Chrome 36.0 (12.0 -webkit-), IE 10.0, Mozilla 16.0 (10.0 -moz-), Safari 9.0 (4.0 -webkit-), Opera 23.0 (15.0 -webkit-)
+ * backface-visibility: visible|hidden|initial|inherit;
+ */
+.backface-visibility (@value: visible) {
+	-webkit-backface-visibility: @value;
+	-moz-backface-visibility: @value;
+	backface-visibility: @value;
+}
+
+.background-gradient-horizontal (@fallback: #333333, @from: #3b5fc3, @to: rgba(37,37,37,0), @start: 0%, @end: 100%) {
+	background: @fallback;
+	background: -moz-linear-gradient(left, @from @start, @to @end);
+	background: -webkit-gradient(left top, right top, color-stop(@start, @from), color-stop(@end, @to));
+	background: -webkit-linear-gradient(left, @from @start, @to @end);
+	background: -o-linear-gradient(left, @from @start, @to @end);
+	background: -ms-linear-gradient(left, @from @start, @to @end);
+	background: linear-gradient(to right, @from @start, @to @end);
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='@from', endColorstr='@to', GradientType=1);
+}
+
+.background-gradient-vertical (@fallback: #333333, @from: #3b5fc3, @to: rgba(59,95,195,0.5), @start: 0%, @end: 100%) {
+	background: @fallback;
+	background: -moz-linear-gradient(top, @from @start, @to @end);
+	background: -webkit-gradient(left top, left bottom, color-stop(@start, @from), color-stop(@end, @to));
+	background: -webkit-linear-gradient(top, @from @start, @to @end);
+	background: -o-linear-gradient(top, @from @start, @to @end);
+	background: -ms-linear-gradient(top, @from @start, @to @end);
+	background: linear-gradient(to bottom, @from @start, @to @end);
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='@from', endColorstr='@to', GradientType=0);
+}
+
+/* Chrome all, IE 10.0, Firefox all, Safari all, Opera 27.0
+ * user-select: auto|text|none|contain|all
+ */
+.user-select (@value: all) {
+	-webkit-touch-callout: @value;
+	-webkit-user-select: @value;
+	-khtml-user-select: @value;
+	-moz-user-select: @value;
+	-ms-user-select: @value;
+	user-select: @value;
+}
+
+/* Chrome 4.0, IE 10.0, Firefox 4.0, Safari 5.0, Opera 15.0
+ */
+.placeholder-font (@fontColor: #111111, @fontSize: 16px, @fontName: sans-serif, @fontWeight: normal) {
+	&::-webkit-input-placeholder {
+		color: @fontColor;
+		font-family: @fontName;
+		font-size: @fontSize;
+		font-weight: @fontWeight;
+	}
+	&:-moz-placeholder {
+		color: @fontColor;
+		font-family: @fontName;
+		font-size: @fontSize;
+		font-weight: @fontWeight;
+	}
+	&::-moz-placeholder {
+		color: @fontColor;
+		font-family: @fontName;
+		font-size: @fontSize;
+		font-weight: @fontWeight;
+		opacity: 1; // Override Firefox's unusual default opacity; see https://github.com/twbs/bootstrap/pull/11526
+	}
+	&:-ms-input-placeholder {
+		color: @fontColor;
+		font-family: @fontName;
+		font-size: @fontSize;
+		font-weight: @fontWeight;
+	}
+}
+
+/* Chrome 29.0 (21.0 -webkit-), IE 11.0 (10.0 -ms-), Mozilla 28.0 (18.0 -moz-), Safari 9.0 (6.1 -webkit-), Opera 17.0
+ * flex: flex-grow flex-shrink flex-basis|auto|initial|inherit;
+ */
+.flex (@value: ~"0 1 auto") {
+	-webkit-flex: @value;
+	-moz-flex: @value;
+	-ms-flex: @value;
+	flex: @value;
+}
+
+/* Chrome 29.0 (21.0 -webkit-), IE 11.0 (10.0 -ms-), Mozilla 28.0 (18.0 -moz-), Safari 9.0 (6.1 -webkit-), Opera 12.1
+ * flex-wrap: nowrap|wrap|wrap-reverse|initial|inherit;
+ */
+.flex-wrap (@value: wrap) {
+	-webkit-flex-wrap: @value;
+	-ms-flex-wrap: @value;
+	flex-wrap: @value;
+}
+
+/* Chrome 29.0 (21.0 -webkit-), IE 11.0 (10.0 -ms-), Mozilla 28.0 (18.0 -moz-), Safari 9.0 (6.1 -webkit-), Opera 17.0
+ * justify-content: flex-start|flex-end|center|space-between|space-around|initial|inherit;
+ */
+.flex-justify (@value: flex-start) {
+	-webkit-justify-content: @value;
+	-moz-justify-content: @value;
+	.ms-flex-justify(@value);
+	justify-content: @value;
+}
+.ms-flex-justify (@value) when (@value = space-between) {
+	-ms-flex-pack: justify;
+}
+.ms-flex-justify (@value) when (@value = space-around) {
+	-ms-flex-pack: distribute;
+}
+.ms-flex-justify (@value) when (@value = flex-end) {
+	-ms-flex-pack: end;
+}
+.ms-flex-justify (@value) when (@value = flex-start) {
+	-ms-flex-pack: start;
+}
+.ms-flex-justify (@value) when (@value = center) {
+	-ms-flex-pack: center;
+}
+
+/* Chrome 29.0 (21.0 -webkit-), IE 11.0 (10.0 -ms-), Mozilla 28.0 (18.0 -moz-), Safari 9.0 (6.1 -webkit-), Opera 17.0
+ * flex-direction: row|row-reverse|column|column-reverse|initial|inherit;
+ */
+.flex-direction (@value: row) {
+	-webkit-flex-direction: @value;
+	-ms-flex-direction: @value;
+	flex-direction: @value;
+}
+
+/* Chrome 29.0 (21.0 -webkit-), IE 11.0 (10.0 -ms-), Mozilla 28.0 (18.0 -moz-), Safari 9.0 (6.1 -webkit-), Opera 17.0
+ * order: number|initial|inherit;
+ */
+.flex-order (@value: 0) {
+	-webkit-order: @value;
+	-ms-flex-order: @value;
+	order: @order;
+}
+
+/* Chrome 21.0, IE 11.0, Mozilla 20.0, Safari 9.0 (7.0 -webkit-), Opera 12.1
+ * align-items: stretch|center|flex-start|flex-end|baseline|initial|inherit;
+ */
+.flex-align-items (@value: stretch) {
+	-webkit-align-items: @value;
+	-ms-flex-align: @value;
+	align-items: @value;   
+}
+
+/* Chrome 21.0, IE 11.0, Mozilla 20.0, Safari 9.0 (7.0 -webkit-), Opera 12.1
+ * align-self: auto|stretch|center|flex-start|flex-end|baseline|initial|inherit;
+ */
+.flex-align-self (@value: auto) {
+	-webkit-align-self: @value;
+	.ms-flex-align-self(@value);
+	align-self: @value;
+}
+.ms-flex-align-self (@value) when (@value = flex-end) {
+	-ms-flex-item-align: end;
+}
+.ms-flex-align-self (@value) when (@value = flex-start) {
+	-ms-flex-item-align: start;
+}
+.ms-flex-align-self (@value) when (@value = auto), (@value = center), (@value = baseline), (@value = stretch) {
+	-ms-flex-item-align: @value;
+}
+
+/* Chrome 29.0 (21.0 -webkit-), IE 11.0, Mozilla 28.0, Safari 9.0 (6.1 -webkit-), Opera 12.1
+ * flex-grow: number|initial|inherit;
+ */
+.flex-grow (@value: 0) {
+	-webkit-flex-grow: @value;
+	-ms-flex-grow: @value;
+	flex-grow: @value;
+}
+
+/* Chrome 29.0 (21.0 -webkit-), IE 11.0, Mozilla 28.0, Safari 9.0 (8.0 -webkit-), Opera 12.1
+ * flex-shrink: number|initial|inherit;
+ */
+.flex-shrink (@value: 1) {
+	-webkit-flex-shrink: @value;
+	-ms-flex-shrink: @value;
+	flex-shrink: @value;
+}
+
+/* Chrome 29.0 (21.0 -webkit-), IE 11.0, Mozilla 22.0, Safari 9.0 (7.0 -webkit-), Opera 12.1
+ * flex-basis: number|auto|initial|inherit;
+ */
+.flex-basis (@value: auto) {
+	-webkit-flex-basis: @value;
+	-ms-flex-basis: @value;
+	flex-basis: @value;
+}
+
+/* Chrome 29.0 (19.0 -webkit-), IE 11.0 (9.0 expression), Firefox 45.0 -moz-, Safari 9.1, Opera 38.0
+ */
+.calc-width (@fallbackWidth: 100px, @value: ~"100% - 50px") {
+	width: @fallbackWidth;
+	width: -webkit-calc(@value);
+	width: -moz-calc(@value);
+	width: -o-calc(@value);
+	width: expression(@value);
+	width: calc(@value);
+}
+
+/* Chrome 29.0 (19.0 -webkit-), IE 11.0 (9.0 expression), Firefox 45.0 -moz-, Safari 9.1, Opera 38.0
+ */
+.calc-height (@fallbackHeight: 100px, @value: ~"100% - 50px") {
+	height: @fallbackHeight;
+	height: -webkit-calc(@value);
+	height: -moz-calc(@value);
+	height: -o-calc(@value);
+	height: expression(@value);
+	height: calc(@value);
+}
+
+/* Chrome 1.0, IE 7.0 (IE 5.0 expression), Firefox 3.0, Safari 2.0.2, Opera 4.0
+ */
+.min-height (@value: 0px) {
+	min-height: @value;
+	height: e(%('expression(this.scrollHeight < %d ? "%s" : "auto")', unit(@value) + 1, @value));
+}
+
+.max-height (@value: 0px) {
+	max-height: @value;
+	height: e(%('expression(this.scrollHeight > %d ? "%s" : "auto")', unit(@value) - 1, @value));
+}
+
+.min-width (@value: 0px) {
+	min-width: @value;
+	width: e(%('expression(document.body.clientWidth < %d ? "%s" : "auto")', unit(@value) + 1, @value));
+}
+
+.max-width (@value: 0px) {
+	max-width: @value;
+	width: e(%('expression(document.body.clientWidth > %d ? "%s" : "auto")', unit(@value) - 1, @value));
+}
+
+/* Chrome 18.0 -webkit-, IE 13.0, Firefox 35.0, Safari 9.1 (6.0 -webkit-), Opera 15.0 -webkit-
+ * filter: none | blur() | brightness() | contrast() | drop-shadow() | grayscale() | hue-rotate() | invert() | opacity() | saturate() | sepia() | url();
+ */
+.filter (@value: none) {
+	-webkit-filter: @value;
+    -moz-filter: @value;
+    -ms-filter: @value;
+	filter: @value;
+}
+
+.filter-blur (@value: 0px) {
+	.filter(~"blur(@{value})");
+}
+
+.filter-brightness (@value: 1) {
+	.filter(~"brightness(@{value})");
+}
+
+.filter-contrast (@value: 0%) {
+	.filter(~"contrast(@{value})");
+}
+
+.filter-grayscale (@value: 0%) {
+	.filter(~"grayscale(@{value})");
+}
+
+.filter-hue-rotate (@value: 0deg) {
+	.filter(~"hue-rotate(@{value})");
+}
+
+.filter-invert (@value: 0%) {
+	.filter(~"invert(@{value})");
+}
+
+.filter-saturate (@value: 0) {
+	.filter(~"saturate(@{value})");
+}
+
+.filter-sepia (@value: 0%) {
+	.filter(~"sepia(@{value})");
+}
+
+/* <offset-x> <offset-y> [<blur-radius> | <spread-radius> | <color>]
+ */
+.filter-drop-shadow (@value: 16px 16px 10px #000000) {
+	.filter(~"drop-shadow(@{value})");
+}
+
+/* Chrome 2.0, IE 9.0, Firefox 2.0 -moz-, Safari 1.1, Opera 9.5
+ */
+.selection (@backgroundColor: #ffffff, @fontColor: #111111) {
+	&::-webkit-selection {
+		background: @backgroundColor;
+		color: @fontColor;
+	}
+	&::-moz-selection {
+		background: @backgroundColor;
+		color: @fontColor;
+	}
+	&::-ms-selection {
+		background: @backgroundColor;
+		color: @fontColor;
+	}
+	&::-o-selection {
+		background: @backgroundColor;
+		color: @fontColor;
+	}
+	&::selection {
+		background: @backgroundColor;
+		color: @fontColor;
+	}
+}
+
+/* Chrome 13.0 -webkit-, IE 10.0 -ms-, Firefox 43.0 (6.0 -moz-), Safari 5.1 -webkit-
+ * hyphens: none|manual|auto
+ */
+.hyphens (@value: none) {
+	-webkit-hyphens: @value;
+	-moz-hyphens: @value;
+	-ms-hyphens: @value;
+	hyphens: @value;
+}
+
+/*
+ * Utility
+ */
+.clearfix () {
+	&:before,
+	&:after {
+		content: " "; // 1
+		display: table; // 2
+	}
+	&:after {
+		clear: both;
+	}
+}
+
+.center-block-h () {
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.center-block-h-v (@blockWidth: 300px, @blockHeight: 200px) {
+	display: block;
+	width: @blockWidth;
+	height: @blockHeight;
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	@heightMargin: -(round(@blockHeight / 2));
+	@widthMargin: -(round(@blockWidth / 2));
+	margin: ~"@{heightMargin}" 0 0 ~"@{widthMargin}";
+}
+
+.inline-block () {
+	display: -moz-inline-stack;
+	display: inline-block;
+	vertical-align: top;
+	zoom: 1;
+	*display: inline;
+}
+
+.flex-block () {
+	display: -webkit-box; /* Safari < 6 */
+	display: -webkit-flexbox; /* Safari 6+ */
+	display: -webkit-flex;
+	display: -moz-box;
+	display: -ms-flexbox; /* IE 10 */
+	display: flex;
+}
+
+.overlay-block (@layer: 1, @background: rgba(0, 0, 0, 0.2)) {
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	z-index: @layer;
+	width: 100%;
+	height: 100%;
+	overflow: hidden;
+	background: @background;
+}
+
+.disable-image-smoothing () {
+	image-rendering: optimizeSpeed;
+	image-rendering: -moz-crisp-edges; /* Firefox */
+	image-rendering: -o-crisp-edges; /* Opera */
+	image-rendering: -webkit-optimize-contrast; /* Chrome (and eventually Safari) */
+	image-rendering: optimize-contrast; /* CSS3 proposed */
+	-ms-interpolation-mode: nearest-neighbor; /* IE8+ */
+}
+
+/* Allows changing the style of any element to platform-based interface elements or vice versa
+ */
+.appearence (@value: none) {
+    -webkit-appearance: @value;
+    -moz-appearance: @value;
+	appearance: @value;
+}
