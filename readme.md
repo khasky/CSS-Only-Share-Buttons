@@ -3,7 +3,7 @@ CSS Only Share Buttons
 
 ![CSS Only Share Buttons](https://github.com/khasky/CSS-Only-Share-Buttons/blob/master/screenshot.png)
 
-Pure CSS implementation of share buttons without images.
+Share buttons without images using CSS and web-safe fonts.
 
 [Live demo](http://khasky.com/demo/css-only-share-buttons)
 
